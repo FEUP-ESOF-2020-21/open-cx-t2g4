@@ -248,7 +248,7 @@ class _AttendeePageState extends State<AttendeePage> {
                           children: [
                             Container(
                               child: sessionIDForm,
-                              width: 150,
+                              width: 200,
                             ),
                             SizedBox(
                               height: 20,

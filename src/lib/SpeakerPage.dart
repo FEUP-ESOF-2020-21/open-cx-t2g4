@@ -427,18 +427,23 @@ class _SpeakerPageState extends State<SpeakerPage> {
                         children: [
                           Container(
                             child: sessionIDForm,
-                            width: 150,
+                            width: 200,
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
                           Container(
                             child: authCodeForm,
-                            width: 150,
+                            width: 200,
                           ),
                           FlatButton(
                             key: Key("joinSessionButton"),
                             disabledTextColor: Colors.white,
                             disabledColor: Colors.white,
                             color: buttonColor(),
-                            child: Text("Join session"),
+                            child: Text("Join session",
+                                style: buttonTextStyle()
+                            ),
                             onPressed: checkSession,
                           ),
                         ],

@@ -76,8 +76,8 @@ class App extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primaryColor: Colors.greenAccent,
-        primarySwatch: Colors.green,
+        primaryColor: Colors.deepPurpleAccent,
+        primarySwatch: Colors.purple,
       ),
       home: HomePage(title: 'Com4All'),
     );
@@ -149,26 +149,35 @@ class _HomePageState extends State<HomePage> {
                     body: Center(
                         child:
                             Column(children: [
-                              Row(
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 200, 0, 0),
+                                child:
+                                Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Dark Mode",style: buttonTextStyle(),),
+                                Text("Dark Mode",style: TextStyle(color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
                                 Switch(
                                   value: darkMode,
                                   onChanged: toggleDarkMode,
                                   activeColor: buttonColor(),
                                   activeTrackColor: Colors.grey,
                                 )
-                              ]
+                              ])
                             ),
-                              TextFormField(
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                                width: 200,
+                                child:
+                                TextFormField(
                                 initialValue: displayName,
                                 onChanged: (text) => {
                                   setState(() {
                                   displayName = text;
                                   })},
                                 decoration: InputDecoration(
-                                    fillColor: (darkMode ? Colors.grey : Colors.white),
+                                    border: OutlineInputBorder(),
+                                    fillColor: (darkMode ? Colors.grey : backgroundColor()),
                                     filled: true,
                                     labelText: "Display name",
                                     labelStyle: whiteBlackTextStyle()
@@ -176,6 +185,7 @@ class _HomePageState extends State<HomePage> {
                                 expands: false,
                                 maxLines: 1,
                                 minLines: 1,
+                              )
                               )
                             ]),
                     ),
@@ -312,7 +322,7 @@ class LoadingApp extends StatelessWidget {
     return MaterialApp(
       title: 'Com4All',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.purple,
       ),
       home: LoadingPage(title: 'Com4All'),
     );
