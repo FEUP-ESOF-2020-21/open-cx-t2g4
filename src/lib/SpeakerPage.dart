@@ -252,10 +252,11 @@ class _SpeakerPageState extends State<SpeakerPage> {
   Container getComments() {
     if (receivedMessages.isEmpty)
       return Container(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
         child: Text("No Questions",
           textAlign: TextAlign.center,
-          style: whiteBlackTextStyle(),
+          style: TextStyle(fontWeight: FontWeight.bold),
+
         ),
       );
 
@@ -328,7 +329,7 @@ class _SpeakerPageState extends State<SpeakerPage> {
                                   left: 10.0, right: 10.0, bottom: 5.0),
                               padding: EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
                               decoration: new BoxDecoration(
-                                  color: receivedMessages[idx]['feedback']=='d' ?  Color.fromRGBO(0xe2,0x97,0x92, 1.0): Colors.grey,
+                                  color: receivedMessages[idx]['feedback']=='d' ?  Color.fromRGBO(0xe2,0x97,0x92, 1.0): Colors.black12,
                                   borderRadius: new BorderRadius.only(
                                       topLeft: const Radius.circular(30.0),
                                       topRight: const Radius.circular(30.0),

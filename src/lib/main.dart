@@ -77,7 +77,7 @@ class App extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primaryColor: Colors.greenAccent,
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.green,
       ),
       home: HomePage(title: 'Com4All'),
     );
