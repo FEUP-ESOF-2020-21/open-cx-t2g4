@@ -368,7 +368,7 @@ class LoadingApp extends StatelessWidget {
     return MaterialApp(
       title: 'Com4All',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.deepPurple,
       ),
       home: LoadingPage(title: 'Com4All'),
     );
