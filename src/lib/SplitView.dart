@@ -56,7 +56,7 @@ class _SplitViewState extends State<SplitView> {
             GestureDetector(
               behavior: HitTestBehavior.translucent,
               child: Container(
-                color: backgroundInverseColor(),
+                color: Colors.deepPurpleAccent,
                 child: SizedBox(
                     height: _dividerWidth,
                     width: constraints.maxWidth
