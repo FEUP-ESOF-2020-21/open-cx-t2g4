@@ -95,8 +95,7 @@ class MessagingFirebase extends Messaging {
   }
 
   @override
-  void sendIdentifiedMessage(String token, String message, String uniqueToken) {
-    print(message);
+  void sendIdentifiedMessage(String token, String username, String message, String uniqueToken) {
     var now = new DateTime.now();
     var time = DateFormat('HH:mm').format(now);
     print(time);
@@ -115,6 +114,7 @@ class MessagingFirebase extends Messaging {
             'id': '1',
             'status': 'done',
             'type': 'message',
+            'username': username,
             'message': message,
             'timestamp': time,
             'uniqueToken': uniqueToken,
