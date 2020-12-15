@@ -276,7 +276,7 @@ class _SpeakerPageState extends State<SpeakerPage> {
                                   height: 50,
                                   child: const Icon(Icons.account_circle_rounded)),
                               Expanded(
-                                child: Text('John Doe', textAlign: TextAlign.left,style: buttonTextStyle()),
+                                child: Text(receivedMessages[idx]['username'], textAlign: TextAlign.left,style: buttonTextStyle()),
                               ),
                               SizedBox(
                                 child: IconButton(

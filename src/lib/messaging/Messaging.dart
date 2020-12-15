@@ -11,7 +11,7 @@ abstract class Messaging{
   * @param message string with the message
   */
   void sendMessage(String token, String message);
-  void sendIdentifiedMessage(String token, String message,String uniqueToken);
+  void sendIdentifiedMessage(String token, String username, String message,String uniqueToken);
 
   /*
   * Sends a message to each token of a list.
