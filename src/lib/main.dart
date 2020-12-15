@@ -76,7 +76,8 @@ class App extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.greenAccent,
+        primarySwatch: Colors.red,
       ),
       home: HomePage(title: 'Com4All'),
     );
@@ -130,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                 enabled: index == 2,
                 child:  Scaffold(
                   appBar: new AppBar(
-                    backgroundColor: buttonColor(),
+                    backgroundColor: Theme.of(context).primaryColor,
                     title: Text("Settings"),
                     actions: [
                       GestureDetector(
@@ -187,41 +188,70 @@ class _HomePageState extends State<HomePage> {
                   backgroundColor: buttonColor(),
                   title: Text(widget.title),
                   actions: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          settings = true;
-                        });
-                      },
-                      child: Icon(Icons.settings),
-                    ),
+                    Padding(padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            settings = true;
+                          });
+                        },
+                        child: Icon(Icons.settings),
+                      ),
+                    )
                   ],
                 ),
-                body:  Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        key: Key("attendeeBtn"),
-                        disabledTextColor: Colors.white,
-                        disabledColor: Colors.white,
-                        color: buttonColor(),
-                        child: Text("Attendee",style:  buttonTextStyle(),),
-                        onPressed: goToAttendeePage,
+                body:  Column(
+                    children:[
+                    Container(
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(color: Colors.black,
+                                fontWeight: FontWeight.bold, fontSize: 32),
+                            children: [
+                              TextSpan(text: "Welcome to "),
+                              TextSpan(text: "Com4All!", style: TextStyle(
+                                  color: Theme.of(context).primaryColor)
+                              )
+                            ]
+                          )
+                        ),
+                        margin: EdgeInsets.all(60),
                       ),
-                      SizedBox(
-                        height: 20,
+                      Container(
+                          child: Text(
+                          "Join as:", style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16
+                              )
+                          ),
+                          margin: EdgeInsets.fromLTRB(0, 80, 0, 30)
                       ),
-                      FlatButton(
-                        key: Key("speakerBtn"),
-                        color: buttonColor(),
-                        disabledTextColor: Colors.white,
-                        disabledColor: Colors.white,
-                        child: Text("Speaker",style:  buttonTextStyle(),),
-                        onPressed: goToSpeakerPage,
-                      ),
-                    ],
-                  ),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                          FlatButton(
+                            key: Key("attendeeBtn"),
+                            disabledTextColor: Colors.white,
+                            disabledColor: Colors.white,
+                            color: buttonColor(),
+                            child: Text("Attendee",style:  buttonTextStyle(),),
+                            onPressed: goToAttendeePage,
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          FlatButton(
+                            key: Key("speakerBtn"),
+                            color: buttonColor(),
+                            disabledTextColor: Colors.white,
+                            disabledColor: Colors.white,
+                            child: Text("Speaker",style:  buttonTextStyle(),),
+                            onPressed: goToSpeakerPage,
+                        ),
+                      ],
+                    ),
+                  )]
                 ),
               ),
             ),
@@ -261,9 +291,9 @@ class LoadingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Com4All',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: LoadingPage(title: 'Com4All'),
     );
