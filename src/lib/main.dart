@@ -153,15 +153,35 @@ class _HomePageState extends State<HomePage> {
                   body: Scaffold(
                     backgroundColor: backgroundColor(),
                     body: Center(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Dark Mode",style: buttonTextStyle(),),
-                              Switch(
-                                value: darkMode,
-                                onChanged: toggleDarkMode,
-                                activeColor: buttonColor(),
-                                activeTrackColor: Colors.grey,
+                        child:
+                            Column(children: [
+                              Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Dark Mode",style: buttonTextStyle(),),
+                                Switch(
+                                  value: darkMode,
+                                  onChanged: toggleDarkMode,
+                                  activeColor: buttonColor(),
+                                  activeTrackColor: Colors.grey,
+                                )
+                              ]
+                            ),
+                              TextFormField(
+                                initialValue: displayName,
+                                onChanged: (text) => {
+                                  setState(() {
+                                  displayName = text;
+                                  })},
+                                decoration: InputDecoration(
+                                    fillColor: (darkMode ? Colors.grey : Colors.white),
+                                    filled: true,
+                                    labelText: "Display name",
+                                    labelStyle: whiteBlackTextStyle()
+                                ),
+                                expands: false,
+                                maxLines: 1,
+                                minLines: 1,
                               ),
                               DropdownButton(
                                 dropdownColor: darkMode ? Colors.black : Colors.white,
@@ -177,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                                     .toList(),
                               )
                             ]
-                        )
+                            ),
                     ),
                   ),
                 )

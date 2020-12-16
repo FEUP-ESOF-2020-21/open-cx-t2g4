@@ -57,7 +57,6 @@ class _AttendeePageState extends State<AttendeePage> {
     if(r['type']=='feedback'){
       setState(() {
         for(int i = 0; i<sentList.length;i++){
-          print(i);
           if(sentList[i]['uniqueToken']==r['uniqueToken']){
             if(r['feedback'] == 'r'){
               sentList.removeAt(i);
@@ -168,10 +167,13 @@ class _AttendeePageState extends State<AttendeePage> {
   void sendMessage() async {
     String uniqueKey = UniqueKey().toString();
     messaging.sendIdentifiedMessage(
-        await database.getToken(sessionID), questionMessageController.text,uniqueKey);
+        await database.getToken(sessionID),
+        displayName,
+        questionMessageController.text,
+        uniqueKey);
     var now = new DateTime.now();
     var time = now.hour.toString()+":"+now.toLocal().toString().substring(14,16);
-    sentList.add({"message": questionMessageController.text,"timestamp": time,"feedback": "a","uniqueToken": uniqueKey});
+    sentList.add({"username": displayName, "message": questionMessageController.text,"timestamp": time,"feedback": "a","uniqueToken": uniqueKey});
     messagesScrollController.animateTo(
         messagesScrollController.position.maxScrollExtent.ceilToDouble() +
             questionMessageController.text.length * 100,
@@ -303,7 +305,7 @@ class _AttendeePageState extends State<AttendeePage> {
                                         Row(
                                             children: [
                                               Expanded(
-                                                child: Text('John Doe',textAlign: TextAlign.right,style: whiteBlackTextStyle(),),
+                                                child: Text(sentList[idx]['username'], textAlign: TextAlign.right,style: whiteBlackTextStyle(),),
                                               ),
                                               SizedBox(
                                                   width: 50,
