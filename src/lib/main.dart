@@ -209,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                                 expands: false,
                                 maxLines: 1,
                                 minLines: 1,
-                              ),
+                              )),
                               DropdownButton(
                                 dropdownColor: darkMode ? Colors.black : Colors.white,
                                 onChanged: (selectedVal) => _switchLang(selectedVal),
