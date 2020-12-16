@@ -53,7 +53,7 @@ class _AttendeePageState extends State<AttendeePage> {
     child: Text(""),
   );
 
-  void getMessage(dynamic r) {
+  Future getMessage(dynamic r) async{
     if(r['type']=='feedback'){
       setState(() {
         for(int i = 0; i<sentList.length;i++){
@@ -69,6 +69,7 @@ class _AttendeePageState extends State<AttendeePage> {
     else {
       print("received: " + r['message'].toString());
       String message = r['message'];
+      message = await translate(message);
       if (receivedText.length > 0)
         message = " " + message;
       else {
@@ -85,6 +86,11 @@ class _AttendeePageState extends State<AttendeePage> {
     }
   }
 
+  Future<String> translate(String message) async{
+    var temp =  await translator.translate(message,to:translatorLanguage);
+    return temp.text;
+  }
+
   Future setupMessaging() async {
     messaging = new MessagingFirebase(getMessage);
     localToken = await messaging.getToken();
@@ -94,7 +100,6 @@ class _AttendeePageState extends State<AttendeePage> {
   void initState() {
     super.initState();
     setupMessaging();
-
     questionMessage = TextField(
       key: Key("questionField"),
       controller: questionMessageController,
@@ -241,7 +246,7 @@ class _AttendeePageState extends State<AttendeePage> {
                 child: new TickerMode(
                   enabled: index == 0,
                   child: new Scaffold(
-                    backgroundColor: backgroundColor(),
+                      backgroundColor: backgroundColor(),
                       body: new Center(
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -318,8 +323,8 @@ class _AttendeePageState extends State<AttendeePage> {
                                         Container(
                                           padding: EdgeInsets.fromLTRB(2.0, 0.2, 0.2, 0.2),
                                           child: Text(sentList[idx]['timestamp'],
-                                              textAlign: TextAlign.right,
-                                              style: whiteBlackTextStyle(),
+                                            textAlign: TextAlign.right,
+                                            style: whiteBlackTextStyle(),
                                           ),
                                         ),
                                         Container(
@@ -383,5 +388,8 @@ class _AttendeePageState extends State<AttendeePage> {
     );
   }
 }
+
+
+
 
 

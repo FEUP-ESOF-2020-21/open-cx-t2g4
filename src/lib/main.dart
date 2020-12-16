@@ -119,6 +119,13 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       darkMode = value;
     });
+    print(translatorLanguage);
+  }
+  void _switchLang(String lang){
+    translatorLanguage = lang;
+    setState(() {
+
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -202,9 +209,22 @@ class _HomePageState extends State<HomePage> {
                                 expands: false,
                                 maxLines: 1,
                                 minLines: 1,
+                              ),
+                              DropdownButton(
+                                dropdownColor: darkMode ? Colors.black : Colors.white,
+                                onChanged: (selectedVal) => _switchLang(selectedVal),
+                                value: translatorLanguage,
+                                items: languages
+                                    .map(
+                                      (localeName) => DropdownMenuItem(
+                                    value: localeName,
+                                    child: Text(localeName,style: whiteBlackTextStyle(),),
+                                  ),
+                                )
+                                    .toList(),
                               )
-                              )
-                            ]),
+                            ]
+                        ),
                     ),
                   ),
                 )
