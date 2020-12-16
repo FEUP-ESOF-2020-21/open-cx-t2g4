@@ -354,6 +354,8 @@ Effort: M
 
 ### Domain model
 
+![Domain Model](images/domain-model.svg)
+
 Our app consists of Users(Atendee or Speaker) and its devices, Conferences and Messages.  
 Both Atendees and Speakers are Users. Each user has its own device. 
 Each Conference has one speaker and multiple atendees who can send messages related to a conference such as questions. One message can only be sent by one device/user(only atendees can send messages) and can only target one conference. Each conference has a transcript which is updated by the Speaker responsible for the conference. 
