@@ -134,13 +134,16 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: Theme.of(context).primaryColor,
                     title: Text("Settings"),
                     actions: [
-                      GestureDetector(
+                      Padding(padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        child:
+                        GestureDetector(
                           child: Icon(Icons.keyboard_return),
                           onTap: (){
                             setState(() {
                               settings = false;
                             });
                           }
+                        )
                       )
                     ],
                   ),
@@ -150,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                         child:
                             Column(children: [
                               Container(
-                                margin: EdgeInsets.fromLTRB(0, 200, 0, 0),
+                                margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
                                 child:
                                 Row(
                               mainAxisAlignment: MainAxisAlignment.center,

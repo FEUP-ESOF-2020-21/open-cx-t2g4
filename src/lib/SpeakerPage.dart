@@ -231,7 +231,7 @@ class _SpeakerPageState extends State<SpeakerPage> {
             textAlign: TextAlign.left,
             text: TextSpan(
               style: TextStyle(
-                color: Colors.black,
+                color: backgroundInverseColor(),
               ),
               children: <TextSpan>[
                 TextSpan(
@@ -255,7 +255,8 @@ class _SpeakerPageState extends State<SpeakerPage> {
         padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
         child: Text("No Questions",
           textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold,
+          color: backgroundInverseColor()),
 
         ),
       );
