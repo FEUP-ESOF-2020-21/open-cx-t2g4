@@ -253,7 +253,8 @@ class _AttendeePageState extends State<AttendeePage> {
                           children: [
                             Container(
                               child: sessionIDForm,
-                              width: 150,
+                              height: 50,
+                              width: 200,
                             ),
                             SizedBox(
                               height: 20,
@@ -310,7 +311,13 @@ class _AttendeePageState extends State<AttendeePage> {
                                               SizedBox(
                                                   width: 50,
                                                   height: 50,
-                                                  child: const Icon(Icons.account_circle_rounded)),
+                                                  child: IconTheme(
+                                                    data: new IconThemeData(
+                                                      color: backgroundInverseColor()
+                                                    ),
+                                                    child:
+                                                    const Icon(Icons.account_circle_rounded))
+                                              ),
                                             ]
                                         ),
                                         Container(
@@ -325,7 +332,7 @@ class _AttendeePageState extends State<AttendeePage> {
                                               left: 10.0, right: 10.0, bottom: 5.0),
                                           padding: EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
                                           decoration: new BoxDecoration(
-                                              color: sentList[idx]['feedback']=='a' ? Colors.grey : Color.fromRGBO(0xe2,0x97,0x92, 1.0),
+                                              color: sentList[idx]['feedback']=='a' ? Color.fromRGBO(0xc8,0xc8,0xc8, 1.0) : Color.fromRGBO(0xe2,0x97,0x92, 1.0),
                                               borderRadius: new BorderRadius.only(
                                                   topLeft: const Radius.circular(30.0),
                                                   topRight: const Radius.circular(30.0),

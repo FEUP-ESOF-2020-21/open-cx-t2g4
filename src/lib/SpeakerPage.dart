@@ -231,7 +231,7 @@ class _SpeakerPageState extends State<SpeakerPage> {
             textAlign: TextAlign.left,
             text: TextSpan(
               style: TextStyle(
-                color: Colors.black,
+                color: backgroundInverseColor(),
               ),
               children: <TextSpan>[
                 TextSpan(
@@ -252,10 +252,12 @@ class _SpeakerPageState extends State<SpeakerPage> {
   Container getComments() {
     if (receivedMessages.isEmpty)
       return Container(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
         child: Text("No Questions",
           textAlign: TextAlign.center,
-          style: whiteBlackTextStyle(),
+          style: TextStyle(fontWeight: FontWeight.bold,
+          color: backgroundInverseColor()),
+
         ),
       );
 
@@ -273,9 +275,15 @@ class _SpeakerPageState extends State<SpeakerPage> {
                               SizedBox(
                                   width: 50,
                                   height: 50,
-                                  child: const Icon(Icons.account_circle_rounded)),
+                                  child: IconTheme(
+                                      data: new IconThemeData(
+                                          color: backgroundInverseColor()
+                                      ),
+                                      child:
+                                      const Icon(Icons.account_circle_rounded))
+                              ),
                               Expanded(
-                                child: Text(receivedMessages[idx]['username'], textAlign: TextAlign.left,style: buttonTextStyle()),
+                                child: Text(receivedMessages[idx]['username'], textAlign: TextAlign.left,style:  whiteBlackTextStyle()),
                               ),
                               SizedBox(
                                 child: IconButton(
@@ -328,7 +336,8 @@ class _SpeakerPageState extends State<SpeakerPage> {
                                   left: 10.0, right: 10.0, bottom: 5.0),
                               padding: EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
                               decoration: new BoxDecoration(
-                                  color: receivedMessages[idx]['feedback']=='d' ?  Color.fromRGBO(0xe2,0x97,0x92, 1.0): Colors.grey,
+                                  color: receivedMessages[idx]['feedback']=='d' ?
+                                  Color.fromRGBO(0xe2,0x97,0x92, 1.0): Color.fromRGBO(0xc8,0xc8,0xc8, 1.0),
                                   borderRadius: new BorderRadius.only(
                                       topLeft: const Radius.circular(30.0),
                                       topRight: const Radius.circular(30.0),
@@ -426,18 +435,25 @@ class _SpeakerPageState extends State<SpeakerPage> {
                         children: [
                           Container(
                             child: sessionIDForm,
-                            width: 150,
+                            height: 50,
+                            width: 200,
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
                           Container(
                             child: authCodeForm,
-                            width: 150,
+                            height: 50,
+                            width: 200,
                           ),
                           FlatButton(
                             key: Key("joinSessionButton"),
                             disabledTextColor: Colors.white,
                             disabledColor: Colors.white,
                             color: buttonColor(),
-                            child: Text("Join session"),
+                            child: Text("Join session",
+                                style: buttonTextStyle()
+                            ),
                             onPressed: checkSession,
                           ),
                         ],
