@@ -414,6 +414,11 @@ A good practice is to simplify this, avoiding repetitions, and automating the te
 
 ---
 ## Configuration and change management
+As suggested in the [GitHub flow](https://guides.github.com/introduction/flow/) we:
+- Created a new branch for every new feature with meaningful names
+- Controlled merging to main branch to make sure it was always deployable
+- Made commits with name that explain why it was made
+- Used pull requests to merge branches together and discuss the changes it would make or any necessary improvements
 
 Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
 
