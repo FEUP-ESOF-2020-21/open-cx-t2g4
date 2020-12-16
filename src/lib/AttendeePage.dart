@@ -88,7 +88,7 @@ class _AttendeePageState extends State<AttendeePage> {
   }
 
   Future<String> translate(String message) async{
-    var temp =  await translator.translate(message,to:'pt');
+    var temp =  await translator.translate(message,to:translatorLanguage);
     return temp.text;
   }
 
