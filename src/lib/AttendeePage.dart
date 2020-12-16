@@ -290,11 +290,14 @@ class _AttendeePageState extends State<AttendeePage> {
                             ),
                             child:
                             SplitView(
-                              top: Container(
-                                padding:
-                                EdgeInsets.all(16.0),
-                                child: scrollView,
-                              ),
+                              top:
+                                SizedBox(
+                                width: double.infinity,
+                                  child: Container(
+                                  padding:
+                                    EdgeInsets.fromLTRB(8.0, 16, 5.0, 8.0),
+                                    child: scrollView,
+                              )),
                               bottom:
                               ListView.builder(
                                   controller: messagesScrollController,
