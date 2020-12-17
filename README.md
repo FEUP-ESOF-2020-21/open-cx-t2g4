@@ -382,14 +382,13 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 
 ![Physical architecture](https://drive.google.com/uc?id=1rgcc0jQ3XAd2BTVOjhjPFrYSpomnKoAa)
 
-The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
-
-It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
+In this project we used the Flutter framework, following the suggestion of the professors, as it have many built-in features and public packages. For the dependencies we used [speech_to_text](https://pub.dev/packages/speech_to_text) in the transcriber and [flutter_tts](https://pub.dev/packages/flutter_tts) fot the text to speech feature. We also opted for Firebase for our database server because of its simple setup. The Com4All app connects with the database everytime it needs to send or receive messages.
 
 ### Prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+To help on validating all the architectural, design and technological decisions made, we implemented a thin vertical slice of the system.
+
+We created a structure where we could verify the possibility of the two main features: transcription and question synthesizing. Both were implemented locally and we could test which modules were more suitable for this purposes.
 
 ---
 
