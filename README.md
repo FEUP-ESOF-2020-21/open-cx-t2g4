@@ -36,14 +36,14 @@ Nuno Oliveira
 ---
 
 ## Product Vision
-Bring everyone to the conference sessions! Let the deaf hear and the mute speak.
+Bring everyone to the conference sessions! Let the deaf hear and the mute speak through speech recognition and text synthesizing so no one is excluded.
 
 ---
 ## Elevator Pitch
 In every conference there are two main elements: to listen and to see. But the former is not always possible due to hearing loss.  
 The interaction between the audience and the speaker makes conferences alive, that's why whe created **Com4All**.
 
-The **Com4All** is an app that enables communication, allowing one to keep track of the session through a real-time transcription of what is being said.  
+The **Com4All** is an app that enables communication, allowing one to keep track of the session through a real-time transcription of what is being said. It also allows the speaker to receive messages from the audience, translate them to a desired language and synthesize them for everyone to hear.
 
 This solution's main advantages are that it is free and open-source, in addiction to being simple, fast, and light resource- and data-wise.
 
