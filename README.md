@@ -4,7 +4,7 @@
 
 Welcome to the documentation pages of the *Com4All* of **openCX**!
 
-You can find here detailed about the (sub)product, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP): 
+You can find here detailed about the Com4All, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report, organized by discipline (as of RUP): 
 
 * Business modeling 
   * [Product Vision](#Product-Vision)
@@ -395,12 +395,6 @@ The features tested are:
 * [Joining a session](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/blob/main/src/test_driver/features/join_session.feature)
 * [Asking a question](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/blob/main/src/test_driver/features/ask_question.feature)
 
-In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
- 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
-
 ---
 ## Configuration and change management
 
@@ -423,4 +417,4 @@ To plan and manage our project we used the Github Projects tool:
 
 ## Evolution - contributions to open-cx
 
-Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
+Not yet done.
