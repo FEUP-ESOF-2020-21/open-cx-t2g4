@@ -338,7 +338,7 @@ As an attendee in a conference, I want to understand what is being said even if 
 
 ##### User interface mockup
 
-TODO
+![translate mockup](https://drive.google.com/uc?id=1sGKzPAJPMKG0qqZHygHFL77wNrcGgkWU)
 
 ##### Acceptance tests
 ```gherkin
