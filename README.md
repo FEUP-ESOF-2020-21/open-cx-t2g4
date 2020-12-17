@@ -380,7 +380,7 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 
 ### Physical architecture
 
-![Physical architecture](https://drive.google.com/uc?id=1rgcc0jQ3XAd2BTVOjhjPFrYSpomnKoAa)
+![Physical architecture](https://drive.google.com/uc?id=1BZ-qQ-Z4I0BwhArSnW0YWaPB7-gYmV8h)
 
 In this project we used the Flutter framework, following the suggestion of the professors, as it have many built-in features and public packages. For the dependencies we used [speech_to_text](https://pub.dev/packages/speech_to_text) in the transcriber and [flutter_tts](https://pub.dev/packages/flutter_tts) fot the text to speech feature. We also opted for Firebase for our database server because of its simple setup. The Com4All app connects with the database everytime it needs to send or receive messages.
 
