@@ -414,35 +414,21 @@ A good practice is to simplify this, avoiding repetitions, and automating the te
 
 ---
 ## Configuration and change management
-As suggested in the [GitHub flow](https://guides.github.com/introduction/flow/) we:
-- Created a new branch for every new feature with meaningful names
-- Controlled merging to main branch to make sure it was always deployable
-- Made commits with name that explain why it was made
-- Used pull requests to merge branches together and discuss the changes it would make or any necessary improvements
 
-Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
+In order to maintain the integrity of our project's artifacts, configuration and change management are key activities.
 
-For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
-
+To manage feature requests, bug fixes, and improvements, we used GitHub issues following the [GitHub flow](https://guides.github.com/introduction/flow/).
 
 ---
 
 ## Project management
 
+### User Story Map
+
 ![User Story Map](images/user-story-map.svg)
 
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
-
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
-
-Example of tools to do this are:
-  * [Trello.com](https://trello.com)
-  * [Github Projects](https://github.com/features/project-management/com)
-  * [Pivotal Tracker](https://www.pivotaltracker.com)
-  * [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
-
+To plan and manage our project we used the Github Projects tool:
+[Github Projects](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/projects/2)
 
 ---
 
