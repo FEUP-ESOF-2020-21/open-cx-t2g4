@@ -368,6 +368,12 @@ Each Conference has one speaker and multiple atendees who can send messages rela
 
 ![Logical architecture](https://drive.google.com/uc?export=download&id=1-1okigd6l4Nl0IWU5laGWlnMIMCcXxEi)
 
+The application is structured by four main packages:
+* Synthesizer: responsible for the synthesizing mechanisms
+* Transcriber: responsible for the transcriber mechanisms
+* Database: used to manage the database
+* Messaging: used to subscribe attendees and send messages in both directions
+
 ### Physical architecture
 
 ![Physical architecture](https://drive.google.com/uc?id=1BZ-qQ-Z4I0BwhArSnW0YWaPB7-gYmV8h)
