@@ -31,5 +31,5 @@ jobs:
         gradle assembleDebug
     - name: Unit tests
       run: |
-        cd ..
+        cd src
         flutter test test/test.dart
