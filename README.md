@@ -4,7 +4,7 @@
 
 Welcome to the documentation pages of the *Com4All* of **openCX**!
 
-You can find here detailed about the (sub)product, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP): 
+You can find here detailed about the Com4All, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report, organized by discipline (as of RUP): 
 
 * Business modeling 
   * [Product Vision](#Product-Vision)
@@ -36,14 +36,14 @@ Nuno Oliveira
 ---
 
 ## Product Vision
-Bring everyone to the conference sessions! Let the deaf hear and the mute speak.
+Bring everyone to the conference sessions! Let the deaf hear and the mute speak through speech recognition and text synthesizing so no one is excluded.
 
 ---
 ## Elevator Pitch
 In every conference there are two main elements: to listen and to see. But the former is not always possible due to hearing loss.  
 The interaction between the audience and the speaker makes conferences alive, that's why whe created **Com4All**.
 
-The **Com4All** is an app that enables communication, allowing one to keep track of the session through a real-time transcription of what is being said.  
+The **Com4All** is an app that enables communication, allowing one to keep track of the session through a real-time transcription of what is being said. It also allows the speaker to receive messages from the audience, translate them to a desired language and synthesize them for everyone to hear.
 
 This solution's main advantages are that it is free and open-source, in addiction to being simple, fast, and light resource- and data-wise.
 
@@ -338,7 +338,7 @@ As an attendee in a conference, I want to understand what is being said even if 
 
 ##### User interface mockup
 
-TODO
+![translate mockup](https://drive.google.com/uc?id=1sGKzPAJPMKG0qqZHygHFL77wNrcGgkWU)
 
 ##### Acceptance tests
 ```gherkin
@@ -354,83 +354,73 @@ Effort: M
 
 ### Domain model
 
-To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
+![Domain Model](images/domain-model.svg)
+
+Our app consists of Users(Atendee or Speaker) and its devices, Conferences and Messages.  
+Both Atendees and Speakers are Users. Each user has its own device. 
+Each Conference has one speaker and multiple atendees who can send messages related to a conference such as questions. One message can only be sent by one device/user(only atendees can send messages) and can only target one conference. Each conference has a transcript which is updated by the Speaker responsible for the conference. 
 
 ---
 
 ## Architecture and Design
-The architecture of a software system encompasses the set of key decisions about its overall organization. 
-
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
-
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them. 
-
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
 
 ### Logical architecture
-The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
 
-It can be beneficial to present the system both in a horizontal or vertical decomposition:
-* horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts; 
-* vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
+![Logical architecture](https://drive.google.com/uc?export=download&id=1-1okigd6l4Nl0IWU5laGWlnMIMCcXxEi)
+
+The application is structured by four main packages:
+* Synthesizer: responsible for the synthesizing mechanisms
+* Transcriber: responsible for the transcriber mechanisms
+* Database: used to manage the database
+* Messaging: used to subscribe attendees and send messages in both directions
 
 ### Physical architecture
-The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
 
-It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
+![Physical architecture](https://drive.google.com/uc?id=1BZ-qQ-Z4I0BwhArSnW0YWaPB7-gYmV8h)
+
+In this project we used the Flutter framework, following the suggestion of the professors, as it have many built-in features and public packages. For the dependencies we used [speech_to_text](https://pub.dev/packages/speech_to_text) in the transcriber and [flutter_tts](https://pub.dev/packages/flutter_tts) fot the text to speech feature. We also opted for Firebase for our database server because of its simple setup. The Com4All app connects with the database everytime it needs to send or receive messages.
 
 ### Prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+To help on validating all the architectural, design and technological decisions made, we implemented a thin vertical slice of the system.
+
+We created a structure where we could verify the possibility of the two main features: transcription and question synthesizing. Both were implemented locally and we could test which modules were more suitable for this purposes.
 
 ---
 
 ## Implementation
-Regular product increments are a good practice of product management. 
 
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
-
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+Changelogs for the 4 different product increments can be found [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/releases)
 
 ---
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+To ensure the quality of the application, we performed automated tests with Flutter Gherkin.
 
-In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
- 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+The features tested are:
+* [Joining a session](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/blob/main/src/test_driver/features/join_session.feature)
+* [Asking a question](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/blob/main/src/test_driver/features/ask_question.feature)
 
 ---
 ## Configuration and change management
 
-Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
+In order to maintain the integrity of our project's artifacts, configuration and change management are key activities.
 
-For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
-
+To manage feature requests, bug fixes, and improvements, we used GitHub issues following the [GitHub flow](https://guides.github.com/introduction/flow/).
 
 ---
 
 ## Project management
 
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
+### User Story Map
 
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
+![User Story Map](images/user-story-map.svg)
 
-Example of tools to do this are:
-  * [Trello.com](https://trello.com)
-  * [Github Projects](https://github.com/features/project-management/com)
-  * [Pivotal Tracker](https://www.pivotaltracker.com)
-  * [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
-
+To plan and manage our project we used the Github Projects tool:
+[Github Projects](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/projects/2)
 
 ---
 
 ## Evolution - contributions to open-cx
 
-Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
+Not yet done.

@@ -53,13 +53,14 @@ class _AttendeePageState extends State<AttendeePage> {
     child: Text(""),
   );
 
-  void getMessage(dynamic r) {
+  Future getMessage(dynamic r) async{
     if(r['type']=='feedback'){
       setState(() {
         for(int i = 0; i<sentList.length;i++){
-          print(i);
           if(sentList[i]['uniqueToken']==r['uniqueToken']){
-            sentList[i]['feedback'] = 'd';
+            if(r['feedback'] == 'r'){
+              sentList.removeAt(i);
+            }else sentList[i]['feedback'] = 'd';
             break;
           }
         }
@@ -68,6 +69,7 @@ class _AttendeePageState extends State<AttendeePage> {
     else {
       print("received: " + r['message'].toString());
       String message = r['message'];
+      message = await translate(message);
       if (receivedText.length > 0)
         message = " " + message;
       else {
@@ -84,6 +86,11 @@ class _AttendeePageState extends State<AttendeePage> {
     }
   }
 
+  Future<String> translate(String message) async{
+    var temp =  await translator.translate(message,to:translatorLanguage);
+    return temp.text;
+  }
+
   Future setupMessaging() async {
     messaging = new MessagingFirebase(getMessage);
     localToken = await messaging.getToken();
@@ -93,7 +100,6 @@ class _AttendeePageState extends State<AttendeePage> {
   void initState() {
     super.initState();
     setupMessaging();
-
     questionMessage = TextField(
       key: Key("questionField"),
       controller: questionMessageController,
@@ -161,10 +167,13 @@ class _AttendeePageState extends State<AttendeePage> {
   void sendMessage() async {
     String uniqueKey = UniqueKey().toString();
     messaging.sendIdentifiedMessage(
-        await database.getToken(sessionID), questionMessageController.text,uniqueKey);
+        await database.getToken(sessionID),
+        displayName,
+        questionMessageController.text,
+        uniqueKey);
     var now = new DateTime.now();
     var time = now.hour.toString()+":"+now.toLocal().toString().substring(14,16);
-    sentList.add({"message": questionMessageController.text,"timestamp": time,"feedback": "a","uniqueToken": uniqueKey});
+    sentList.add({"username": displayName, "message": questionMessageController.text,"timestamp": time,"feedback": "a","uniqueToken": uniqueKey});
     messagesScrollController.animateTo(
         messagesScrollController.position.maxScrollExtent.ceilToDouble() +
             questionMessageController.text.length * 100,
@@ -237,14 +246,15 @@ class _AttendeePageState extends State<AttendeePage> {
                 child: new TickerMode(
                   enabled: index == 0,
                   child: new Scaffold(
-                    backgroundColor: backgroundColor(),
+                      backgroundColor: backgroundColor(),
                       body: new Center(
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               child: sessionIDForm,
-                              width: 150,
+                              height: 50,
+                              width: 200,
                             ),
                             SizedBox(
                               height: 20,
@@ -260,7 +270,8 @@ class _AttendeePageState extends State<AttendeePage> {
                             ),
                           ],
                         ),
-                      )),
+                      )
+                  ),
                 ),
               ),
               new Offstage(
@@ -279,11 +290,14 @@ class _AttendeePageState extends State<AttendeePage> {
                             ),
                             child:
                             SplitView(
-                              top: Container(
-                                padding:
-                                EdgeInsets.all(16.0),
-                                child: scrollView,
-                              ),
+                              top:
+                                SizedBox(
+                                width: double.infinity,
+                                  child: Container(
+                                  padding:
+                                    EdgeInsets.fromLTRB(8.0, 16, 5.0, 8.0),
+                                    child: scrollView,
+                              )),
                               bottom:
                               ListView.builder(
                                   controller: messagesScrollController,
@@ -295,19 +309,25 @@ class _AttendeePageState extends State<AttendeePage> {
                                         Row(
                                             children: [
                                               Expanded(
-                                                child: Text('John Doe',textAlign: TextAlign.right,style: whiteBlackTextStyle(),),
+                                                child: Text(sentList[idx]['username'], textAlign: TextAlign.right,style: whiteBlackTextStyle(),),
                                               ),
                                               SizedBox(
                                                   width: 50,
                                                   height: 50,
-                                                  child: const Icon(Icons.account_circle_rounded)),
+                                                  child: IconTheme(
+                                                    data: new IconThemeData(
+                                                      color: backgroundInverseColor()
+                                                    ),
+                                                    child:
+                                                    const Icon(Icons.account_circle_rounded))
+                                              ),
                                             ]
                                         ),
                                         Container(
                                           padding: EdgeInsets.fromLTRB(2.0, 0.2, 0.2, 0.2),
                                           child: Text(sentList[idx]['timestamp'],
-                                              textAlign: TextAlign.right,
-                                              style: whiteBlackTextStyle(),
+                                            textAlign: TextAlign.right,
+                                            style: whiteBlackTextStyle(),
                                           ),
                                         ),
                                         Container(
@@ -315,7 +335,7 @@ class _AttendeePageState extends State<AttendeePage> {
                                               left: 10.0, right: 10.0, bottom: 5.0),
                                           padding: EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
                                           decoration: new BoxDecoration(
-                                              color: sentList[idx]['feedback']=='a' ? Colors.grey : Color.fromRGBO(0xe2,0x97,0x92, 1.0),
+                                              color: sentList[idx]['feedback']=='a' ? Color.fromRGBO(0xc8,0xc8,0xc8, 1.0) : Color.fromRGBO(0xe2,0x97,0x92, 1.0),
                                               borderRadius: new BorderRadius.only(
                                                   topLeft: const Radius.circular(30.0),
                                                   topRight: const Radius.circular(30.0),
@@ -371,5 +391,8 @@ class _AttendeePageState extends State<AttendeePage> {
     );
   }
 }
+
+
+
 
 
