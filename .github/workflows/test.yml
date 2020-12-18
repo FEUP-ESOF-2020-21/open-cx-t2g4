@@ -2,7 +2,7 @@ name: test
 
 on:
   push:
-    branches: [ master , dev, dev-action ]
+    branches: [ master , dev, dev-action, unit-tests ]
   pull_request:
     branches: [ master ]
 
@@ -29,3 +29,7 @@ jobs:
       run: |
         cd src/android
         gradle assembleDebug
+    - name: Unit tests
+      run: |
+        cd ..
+        flutter test test/test.dart
