@@ -283,7 +283,7 @@ class _SpeakerPageState extends State<SpeakerPage> {
                                       const Icon(Icons.account_circle_rounded))
                               ),
                               Expanded(
-                                child: Text(receivedMessages[idx]['username'], textAlign: TextAlign.left,style:  whiteBlackTextStyle()),
+                                child: Text(receivedMessages[idx]['username']==null ? "anonymous":receivedMessages[idx]['username'], textAlign: TextAlign.left,style:  whiteBlackTextStyle()),
                               ),
                               SizedBox(
                                 child: IconButton(
