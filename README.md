@@ -395,11 +395,18 @@ Changelogs for the 4 different product increments can be found [here](https://gi
 ---
 ## Test
 
-To ensure the quality of the application, we performed automated tests with Flutter Gherkin.
+To ensure the quality of the application, we performed acceptance tests and unit tests. GitHub Actions was used to automate our unit tests.
 
+### Acceptance tests:
+This tests were made with Flutter Gherkin.
 The features tested are:
 * [Joining a session](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/blob/main/src/test_driver/features/join_session.feature)
 * [Asking a question](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/blob/main/src/test_driver/features/ask_question.feature)
+
+### Unit tests:
+We made unit tests for the most important packages of the application using flutter tools:
+* Synthesizer: verify if the `text to speech` functionality is working
+* Transcriber: verify if the `speech to text` functionality is working
 
 ---
 ## Configuration and change management
