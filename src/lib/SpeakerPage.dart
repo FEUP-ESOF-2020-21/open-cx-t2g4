@@ -516,6 +516,7 @@ class _SpeakerPageState extends State<SpeakerPage> {
     if (result.isFinal()) {
       List<String> subscribersTokens =
       await database.getSubscribersTokens(sessionID);
+      subscribersTokens.toSet().toList();
       messaging.sendMessageToList(subscribersTokens, result.getValue());
     }
     setState(() {
