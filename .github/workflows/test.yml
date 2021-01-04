@@ -25,10 +25,10 @@ jobs:
       run: |
         cd src
         flutter pub get
-    - name: Assemble debug with Gradle
+    - name: Assemble release with Gradle
       run: |
         cd src/android
-        gradle assembleDebug
+        gradle assembleRelease
 
   Tests:
 
