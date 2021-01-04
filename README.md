@@ -1,5 +1,6 @@
 # open-cx-t2g4 Com4All
 
+![build](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/workflows/build/badge.svg)
 ![test](https://github.com/FEUP-ESOF-2020-21/open-cx-t2g4-bits-please/workflows/test/badge.svg)
 
 Welcome to the documentation pages of the *Com4All* of **openCX**!

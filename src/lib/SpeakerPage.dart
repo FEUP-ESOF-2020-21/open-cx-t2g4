@@ -303,10 +303,22 @@ class _SpeakerPageState extends State<SpeakerPage> {
                                 child: IconButton(
                                   iconSize: 30,
                                   color: darkMode ? Colors.white : Colors.black,
-                                  icon: Icon(Icons.cancel),
+                                  icon: Icon(Icons.check),
                                   onPressed: () {
                                     setState(() {
                                       messaging.messageFeedBack(receivedMessages[idx]['uniqueToken'], receivedMessages[idx]['sender'], "a");
+                                      receivedMessages[idx]['feedback']='a';
+                                    });},
+                                ),
+                              ),
+                              SizedBox(
+                                child: IconButton(
+                                  iconSize: 30,
+                                  color: darkMode ? Colors.white : Colors.black,
+                                  icon: Icon(Icons.cancel),
+                                  onPressed: () {
+                                    setState(() {
+                                      messaging.messageFeedBack(receivedMessages[idx]['uniqueToken'], receivedMessages[idx]['sender'], "d");
                                       receivedMessages[idx]['feedback']='d';
                                     });},
                                 ),
@@ -336,8 +348,7 @@ class _SpeakerPageState extends State<SpeakerPage> {
                                   left: 10.0, right: 10.0, bottom: 5.0),
                               padding: EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
                               decoration: new BoxDecoration(
-                                  color: receivedMessages[idx]['feedback']=='d' ?
-                                  Color.fromRGBO(0xe2,0x97,0x92, 1.0): Color.fromRGBO(0xc8,0xc8,0xc8, 1.0),
+                                  color: receivedMessages[idx]['feedback']=='d' ? Color.fromRGBO(0xe2,0x97,0x92, 1.0) : (receivedMessages[idx]['feedback']=='a' ? Color.fromRGBO(0x90,0xee,0x90, 1.0): Color.fromRGBO(0xc8,0xc8,0xc8, 1.0)),
                                   borderRadius: new BorderRadius.only(
                                       topLeft: const Radius.circular(30.0),
                                       topRight: const Radius.circular(30.0),
