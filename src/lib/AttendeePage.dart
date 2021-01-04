@@ -60,7 +60,11 @@ class _AttendeePageState extends State<AttendeePage> {
           if(sentList[i]['uniqueToken']==r['uniqueToken']){
             if(r['feedback'] == 'r'){
               sentList.removeAt(i);
-            }else sentList[i]['feedback'] = 'd';
+            }else  if(r['feedback'] == 'd')
+              sentList[i]['feedback'] = 'd';
+            else{
+              sentList[i]['feedback'] = 'a';
+            }
             break;
           }
         }
@@ -173,7 +177,7 @@ class _AttendeePageState extends State<AttendeePage> {
         uniqueKey);
     var now = new DateTime.now();
     var time = now.hour.toString()+":"+now.toLocal().toString().substring(14,16);
-    sentList.add({"username": displayName, "message": questionMessageController.text,"timestamp": time,"feedback": "a","uniqueToken": uniqueKey});
+    sentList.add({"username": displayName, "message": questionMessageController.text,"timestamp": time,"feedback": "n","uniqueToken": uniqueKey});
     messagesScrollController.animateTo(
         messagesScrollController.position.maxScrollExtent.ceilToDouble() +
             questionMessageController.text.length * 100,
@@ -335,7 +339,7 @@ class _AttendeePageState extends State<AttendeePage> {
                                               left: 10.0, right: 10.0, bottom: 5.0),
                                           padding: EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 8.0),
                                           decoration: new BoxDecoration(
-                                              color: sentList[idx]['feedback']=='a' ? Color.fromRGBO(0xc8,0xc8,0xc8, 1.0) : Color.fromRGBO(0xe2,0x97,0x92, 1.0),
+                                              color: sentList[idx]['feedback']=='d' ? Color.fromRGBO(0xe2,0x97,0x92, 1.0) : (sentList[idx]['feedback']=='a' ? Color.fromRGBO(0x90,0xee,0x90, 1.0): Color.fromRGBO(0xc8,0xc8,0xc8, 1.0)) ,
                                               borderRadius: new BorderRadius.only(
                                                   topLeft: const Radius.circular(30.0),
                                                   topRight: const Radius.circular(30.0),
